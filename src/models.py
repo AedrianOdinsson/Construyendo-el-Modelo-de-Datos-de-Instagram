@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import String, Integer, ForeignKey, Table
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Column, Integer, ForeignKey, Table
 
 db = SQLAlchemy()
 
@@ -8,9 +9,10 @@ db = SQLAlchemy()
 followers = Table(
     "followers",
     db.metadata,
-    mapped_column("follower_id", ForeignKey("user.id"), primary_key=True),
-    mapped_column("followed_id", ForeignKey("user.id"), primary_key=True)
+    Column("follower_id", ForeignKey("user.id"), primary_key=True),
+    Column("followed_id", ForeignKey("user.id"), primary_key=True)
 )
+
 
 class User(db.Model):
     __tablename__ = "user"
